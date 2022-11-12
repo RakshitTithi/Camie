@@ -1,19 +1,20 @@
 from datetime import datetime
-import imp
 from unittest import result
 from urllib import response
+from random import *
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from taxifare.interface.main import pred
+# from taxifare.interface.main import pred
 from taxifare.ml_logic.preprocessor import preprocess_features
 from taxifare.ml_logic.registry import load_model
 import pandas as pd
 from datetime import datetime
+import math
 
 
 app = FastAPI()
-app.state.model = load_model() # MLFLOW_MODEL_NAME
+#app.state.model = load_model() # MLFLOW_MODEL_NAME
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,58 +24,69 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# http://127.0.0.1:8000/predict?pickup_datetime=2012-10-06 12:10:20&pickup_longitude=40.7614327
-# &pickup_latitude=-73.9798156&dropoff_longitude=40.6513111&dropoff_latitude=-73.8803331&passenger_count=2
-@app.get("/predict")
-def predict(pickup_datetime: datetime,  # 2013-07-06 17:18:00
-            pickup_longitude: float,    # -73.950655
-            pickup_latitude: float,     # 40.783282
-            dropoff_longitude: float,   # -73.984365
-            dropoff_latitude: float,    # 40.769802
-            passenger_count: int):      # 1
-    """
-    we use type hinting to indicate the data types expected
-    for the parameters of the function
-    FastAPI uses this information in order to hand errors
-    to the developpers providing incompatible parameters
-    FastAPI also provides variables of the expected data type to use
-    without type hinting we need to manually convert
-    the parameters of the functions which are all received as strings
-    """
+# http://127.0.0.1:8000/predict?pickup_datetime=2012-10-0
+@app.get("/send_photo")
+def send_photo(camera_id, secret, photo):
 
+    # Security
+    our_secret = get_secret_for(camera_id)
+    if our_secret != secret:
+        return '{"msg": "sorry... but you dont have access"}'
 
-    #today = datetime.today()
-    #pickup_datetime = today
+    # Saves the photo and info
+    saves_photo(photo)
 
-    print(f"pickup_datetime: {pickup_datetime}")
-    print(f"pickup_longitude: {pickup_longitude}")
-    print(f"pickup_latitude: {pickup_latitude}")
-    print(f"dropoff_longitude: {dropoff_longitude}")
-    print(f"dropoff_latitude: {dropoff_latitude}")
-    print(f"passenger_count: {passenger_count}")
+    # ML Process the image
+    num_people = math.rand(1,10)
 
-    print("----- LO: NOW CONVERTING ---------------------------")
+    # Saves the info
+    saves_info(camera_id, photo, num_people)
 
-    df = pd.DataFrame(
-        {
-            'key': pickup_datetime,
-            'pickup_datetime': pickup_datetime,
-            'pickup_longitude': pickup_longitude,
-            'pickup_latitude': pickup_latitude,
-            'dropoff_longitude': dropoff_longitude,
-            'dropoff_latitude': dropoff_latitude,
-            'passenger_count': passenger_count
-        },
-        index=[0])
-
-
-    print("----- LO: NOW PREDICTING ---------------------------")
-    X_processed = preprocess_features(df)
-    y_pred = app.state.model.predict(X_processed)
-    print("----- LO: BACK FROM PREDICTING ---------------------------")
-
-    response = {'fare_amount': round(float(y_pred[0]),2)}
+    # 3rd returns the results
+    response = {'num_people': num_people}
     return response
+
+
+@app.get("/log_camera")
+def log_camera(camera_id, password):
+
+    # 1st generates the secret for this camera
+    initial_password = "TheBestTeam!746"
+    if (password == initial_password):
+        secret = generate_secrete()
+
+    # 2nd saves the info
+
+    # 3rd returns the secret
+    response = {'secret': secret}
+    return response
+
+
+@app.get("/get_info")
+def get_info(dashboard_secret):
+
+    # 1st generates the secret for this camera
+    saved_dashboard_secret = "TheBestTeam!746"
+    if dashboard_secret != saved_dashboard_secret():
+        return '{"msg": "sorry... but you dont have access"}'
+
+    # 2nd retries the info
+    results = []
+    infos = []
+    for info in infos:
+        line = ""
+        results.append(line)
+
+    # 3rd returns the results
+    # There is no need for a return after 1st response. Return at end
+    response = {"code": 0, 'result': results}
+    if len(results) == 0:
+        response = {"code": 1, 'result': ""}
+    return response
+
+
+
+
 
 
 @app.get("/")
@@ -82,3 +94,11 @@ def root():
     response = {'greeting': 'Hello'}
     return response
 
+
+
+
+def generate_secrete():
+    return randint(1, 99999)
+
+def get_dashbord_password():
+    return randint(1, 99999)
