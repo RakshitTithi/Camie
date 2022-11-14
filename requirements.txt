@@ -27,3 +27,15 @@ six>=1.14
 joblib
 memoized-property
 termcolor
+
+#CSRNet libraries
+h5py
+scipy
+os
+glob
+json
+matplotlib
+image
+CSRNet
+torch
+tqdm
