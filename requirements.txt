@@ -9,6 +9,18 @@ numpy
 pandas
 scikit-learn
 cv2
+h5py
+tqdm
+scipy
+scipy.io
+PIL.Image
+os
+glob
+matplotlib
+keras
+tensorflow
+json
+
 
 # tests/linter
 black

@@ -10,7 +10,6 @@ from scipy.ndimage.filters import gaussian_filter
 import scipy
 import json
 from matplotlib import cm as CM
-import tqdm
 import scipy
 import cv2
 from tqdm import tqdm
