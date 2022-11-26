@@ -8,7 +8,7 @@ wheel>=0.29
 numpy
 pandas
 scikit-learn
-
+cv2
 
 # tests/linter
 black
