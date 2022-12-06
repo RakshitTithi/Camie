@@ -8,6 +8,20 @@ wheel>=0.29
 numpy
 pandas
 scikit-learn
+cv2
+h5py
+tqdm
+scipy
+scipy.io
+PIL.Image
+os
+glob
+matplotlib
+keras
+tensorflow
+json
+torch
+
 
 # tests/linter
 black
