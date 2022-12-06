@@ -20,6 +20,7 @@ matplotlib
 keras
 tensorflow
 json
+torch
 
 
 # tests/linter

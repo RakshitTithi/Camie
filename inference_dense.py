@@ -35,11 +35,14 @@ def predict(path):
     count = np.sum(ans)
     return count,image,ans
 
-count,img,hmap = predict('data/part_A_final/test_data/images/IMG_170.jpg')
+def ml1_api(path):
+    count,img,hmap = predict(path)
+    return count
+
 
 #Print count, image, heat map
-print(count)
-plt.imshow(img.reshape(img.shape[1],img.shape[2],img.shape[3]))
-plt.show()
-plt.imshow(hmap.reshape(hmap.shape[1],hmap.shape[2]) , cmap = c.jet )
-plt.show()
+# print(count)
+# plt.imshow(img.reshape(img.shape[1],img.shape[2],img.shape[3]))
+# plt.show()
+# plt.imshow(hmap.reshape(hmap.shape[1],hmap.shape[2]) , cmap = c.jet )
+# plt.show()
