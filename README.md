@@ -31,46 +31,22 @@ Website: The website allows the user to enter a threshold, which is the maximum 
         # Outputs
         
 # Data Source
+The data has been taken from :https://paperswithcode.com/dataset/shanghaitech
 
 # Deep Learning Algorithm
 
-    # Inputs
+    # YOLOvs4: 
     
-    # Outputs
+    # CSRNet:
 
 
-# Installation
-Clone the repository:
-bash
-Copy code
-git clone https://github.com/your-username/camie.git
-# Install the necessary packages:
-Copy code
-pip install -r requirements.txt
-# Start the camera software:
-Copy code
-python camera.py
-# Start the API:
-Copy code
-python api.py
-# Open the website:
-javascript
-# Copy code
-http://localhost:5000/
 # Usage
 Enter the threshold in the input field on the website.
-
 The camera software will capture an image of the crowd and send it to the API for processing.
-
 The API will count the number of people in the image and compare it with the threshold.
-
 If the count is more than the threshold, an alert will be thrown on the website.
 
-# Contributing
-If you find a bug or have a feature request, please open an issue on the GitHub repository.
 
-# License
-This project is licensed under the MIT License.
     
     
 
