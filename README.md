@@ -8,9 +8,9 @@ Camie is a crowd counting system that uses computer vision and deep learning tec
 Presentation link: https://docs.google.com/presentation/d/121awjsGFOArAVqH8oirAxPE_YVvGwQvd-O2A9twWgmM/edit?usp=sharing
 
 # Team members
-Tithi Rakshit : https://github.com/rakshittithi
-Seungmi Park : https://github.com/ellasmpark
-Leonardo Opitz : https://github.com/leonardoopitz
+* Tithi Rakshit : https://github.com/rakshittithi
+* Seungmi Park : https://github.com/ellasmpark
+* Leonardo Opitz : https://github.com/leonardoopitz
 
 # How it works
 * Camera software: The camera software captures images of crowds every 10 seconds and sends them to the API for processing.
